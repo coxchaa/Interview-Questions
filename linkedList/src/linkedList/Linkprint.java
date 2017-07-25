@@ -1,6 +1,6 @@
 package linkedList;
 
-public class linkprint {
+public class Linkprint {
 
 	public static void main(String[] args) {
 		Node n1 = new Node("A", null);
