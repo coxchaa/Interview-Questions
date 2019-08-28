@@ -24,7 +24,7 @@ public class CharUtils {
 
 		}
 		
-		System.out.println("Number of Unique duplicate adjacent charactors: " + countMap.size());
+		System.out.println("Number of unique duplicate adjacent characters: " + countMap.size());
 		return countMap.size();
 		
 		
