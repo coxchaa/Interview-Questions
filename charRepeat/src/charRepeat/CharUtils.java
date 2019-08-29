@@ -11,7 +11,6 @@ public class CharUtils {
 		
 		if(inputString == null  || inputString.length()<2) {
 			//Log statement
-			//Log statement
 			System.out.println("Number of unique duplicate adjacent "
 								+ "characters for string \"" 
 								+ inputString + "\": 0");
