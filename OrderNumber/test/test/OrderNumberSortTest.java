@@ -9,6 +9,20 @@ import com.order.OrderNumber;
 
 import org.junit.jupiter.api.Test;
 
+/* Instructions:
+ * Write the contents of the OrderNumber class that will satisfy the below test case(s).
+ * An order number can contain any alpha numeric characters and/or a '-'.  Any alpha or '-'
+ * characters should sort naturally against any other alpha or '-' charters.  Any Numeric
+ * characters should be grouped contiguously and sort as their value against any other numeric
+ * characters.  Any alpha or '-' characters should sort before numeric charters.
+ * 
+ * Examples:
+ * abc should sort before 123.
+ * 945 should sort before 01234.
+ * abc should sort befere xyz.
+ * ayz should sort before byz.
+ */
+
 class OrderNumberSortTest {
 
 	@Test
@@ -36,7 +50,6 @@ class OrderNumberSortTest {
 			assertEquals(on.getData(),sortList.get(count).getData());
 			count++;
 		}
-		//assertEquals(sortList,unsortedList);
 	}
 
 }

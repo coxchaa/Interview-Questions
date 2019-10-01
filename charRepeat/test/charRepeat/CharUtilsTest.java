@@ -5,6 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/* Instructions:
+ * Can you write an algorithm that returns the count of distinct characters 
+ * that appear more than once in a row?
+ *
+ * String example1 = "lollipop"; // expect 1
+ * String example2 = "lollipooooop"; // expect 2
+ * String example3 = "lollippppooooopppp"; // expect 3
+*/
+
 class CharUtilsTest {
 
 	static String longString = "abcd";
