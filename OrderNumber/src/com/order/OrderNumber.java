@@ -1,17 +1,33 @@
 package com.order;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class OrderNumber implements Comparable<OrderNumber>{
 	private String Data;
+	ArrayList<String> thisStringList = new ArrayList<String>();
 	
 	public OrderNumber(String s){
 		Data = s;
+		
+		Matcher matcher = Pattern.compile("\\d+|\\D+").matcher(this.Data);
+		ArrayList<String> tmpStringList = new ArrayList<String>();
+		while (matcher.find())
+		{
+			tmpStringList.add(matcher.group());
+		}
+		
+		for(String st: tmpStringList) {
+			if(Character.isDigit(st.charAt(0))){
+				thisStringList.add(st);
+			}
+			else {
+				for(Character c: st.toCharArray()) {
+					thisStringList.add(c.toString());
+				}
+			}
+		}
 	}
 	
 	public String getData() {
@@ -20,60 +36,43 @@ public class OrderNumber implements Comparable<OrderNumber>{
 
 	@Override
 	public int compareTo(OrderNumber o) {
-		String inputString = o.Data;
+		if(o == null)
+			return -1;
 		
-		ArrayList<String> thisStringList = new ArrayList<String>();
-		ArrayList<String> inputStringList = new ArrayList<String>();
+		if(this.Data.isEmpty() && o.Data.isEmpty())
+			return 0;
+		else if(this.Data.isEmpty())
+			return 1;
+		else if(o.Data.isEmpty())
+			return -1;
 		
-		Matcher matcher = Pattern.compile("\\d+|\\D+").matcher(this.Data);
-		while (matcher.find())
-		{
-			thisStringList.add(matcher.group());
-		}
+		int loopSize = Math.min(this.thisStringList.size(), o.thisStringList.size());
 		
-		matcher = Pattern.compile("\\d+|\\D+").matcher(inputString);
-		while (matcher.find())
-		{
-			inputStringList.add(matcher.group());
-		}
-		
-		int s2Count = 0;
-		for(String thisStringListIt: thisStringList) {
-			//System.out.println(s);
-			if(Character.isDigit(thisStringListIt.charAt(0))) {
-				Integer sInt = new Integer(thisStringListIt);
-				if(inputString.length()<s2Count+1) {
+		for(int i = 0; i<loopSize; i++) {
+			String c1 = this.thisStringList.get(i);
+			String c2 = o.thisStringList.get(i);
+			if(Character.isDigit(c1.charAt(0))){
+				if(Character.isDigit(c2.charAt(0))) {
+					//both digits
+					Integer i1 = Integer.parseInt(c1);
+					Integer i2 = Integer.parseInt(c2);
+					if(!i1.equals(i2))
+						return i1.compareTo(i2);
+				}
+				else
 					return 1;
-				}
-				if(Character.isDigit(inputStringList.get(s2Count).charAt(0))) {
-					Integer s2Int = new Integer(inputStringList.get(s2Count));
-					if(!(s2Int.compareTo(sInt)==0)) {
-						return sInt.compareTo(s2Int);
-					}
-				}
+			}
+			else if (Character.isDigit(c2.charAt(0))){
+				return -1;
 			}
 			else {
-				if(inputString.length()<s2Count+1) {
-					return 1;
-				}
-				if(Character.isDigit(inputStringList.get(s2Count).charAt(0))) {
-					return 1;
-				}
-				else {
-					if(!(thisStringListIt.compareTo(inputStringList.get(s2Count))==0)) {
-						return thisStringListIt.compareTo(inputStringList.get(s2Count));
-					}
+				//both strings
+				if(!c1.equals(c2)) {
+					return c1.compareTo(c2);
 				}
 			}
-			s2Count++;
 		}
-		
-		if(s2Count==0) {
-			return -1;
-		}
-		
 		return 0;
-		
 
 	}
 

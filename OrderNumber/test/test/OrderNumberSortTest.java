@@ -25,6 +25,8 @@ class OrderNumberSortTest {
 		sortList.add(new OrderNumber("abc1234hdj8894f9-45hj"));
 		sortList.add(new OrderNumber("abc1234hdj8894f9-45hj"));
 		sortList.add(new OrderNumber("abc012345hdj8894f9-45hj"));
+		sortList.add(new OrderNumber("a012345hdj8894f9-45hj"));
+		
 
 		
 		List<OrderNumber> unsortedList = new ArrayList<OrderNumber>(sortList);
